@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TaskNest | Achievement Archive</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        jakarta: ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    colors: {
+                        cream: "#F8F5F2",
+                        sand: "#EFE6DD",
+                        beige: "#DCC5A8",
+                        mocha: "#8B6F47",
+                        coffee: "#5C4033",
+                        ink: "#2F2B28",
+                        success: "#6F8F72"
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body class="bg-cream font-jakarta text-ink">
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="sticky top-0 z-50 bg-cream/80 backdrop-blur-xl border-b border-coffee/10">
+
+        <nav class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+
+            <a href="index.html"
+                class="text-3xl font-extrabold text-coffee">
+                TaskNest
+            </a>
+
+            <div class="hidden md:flex gap-8 font-semibold text-ink/70">
+
+                <a href="index.html">Dashboard</a>
+
+                <a href="pending.html">Pending</a>
+
+                <a class="text-coffee font-bold"
+                    href="completed.html">
+                    Completed
+                </a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+    <!-- ================= HERO ================= -->
+
+    <section class="max-w-7xl mx-auto px-6 py-16">
+
+        <div class="flex flex-col lg:flex-row justify-between gap-10">
+
+            <div>
+
+                <p class="inline-block bg-green-100 text-success px-4 py-2 rounded-full font-semibold">
+
+                    ✅ Achievement Archive
+
+                </p>
+
+                <h1 class="text-5xl font-extrabold mt-6">
+
+                    Your Completed Tasks
+
+                </h1>
+
+                <p class="text-xl text-ink/60 mt-5 leading-8 max-w-2xl">
+
+                    Every completed task represents progress.
+                    Review your accomplishments and stay motivated.
+
+                </p>
+
+            </div>
+
+            <div>
+
+                <a href="pending.html"
+                    class="inline-flex items-center gap-2 px-6 py-4 rounded-full bg-coffee text-white font-bold hover:bg-mocha transition">
+
+                    📌 View Pending Tasks
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= STATS ================= -->
+
+    <section class="max-w-7xl mx-auto px-6">
+
+        <div class="grid md:grid-cols-3 gap-6">
+
+            <div class="bg-white rounded-3xl p-8 shadow-xl">
+
+                <p class="text-4xl font-extrabold text-success">
+
+                    9
+
+                </p>
+
+                <p class="mt-2 font-bold">
+
+                    Completed Tasks
+
+                </p>
+
+            </div>
+
+            <div class="bg-white rounded-3xl p-8 shadow-xl">
+
+                <p class="text-4xl font-extrabold text-coffee">
+
+                    4
+
+                </p>
+
+                <p class="mt-2 font-bold">
+
+                    This Week
+
+                </p>
+
+            </div>
+
+            <div class="bg-white rounded-3xl p-8 shadow-xl">
+
+                <p class="text-4xl font-extrabold text-coffee">
+
+                    37%
+
+                </p>
+
+                <p class="mt-2 font-bold">
+
+                    Productivity
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= TASK GRID ================= -->
+
+    <section class="max-w-7xl mx-auto px-6 py-14">
+
+        <h2 class="text-3xl font-extrabold mb-10">
+
+            Achievement Archive
+
+        </h2>
+
+        <!-- JavaScript will populate this later -->
+        <div id="completedTasks"
+            class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+
+            <!-- CARD 1 -->
+
+            
+
+            <!-- CARD 2 -->
+
+            
+
+        </div>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="bg-coffee text-white mt-12">
+
+        <div class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-10">
+
+            <div>
+
+                <h2 class="text-2xl font-extrabold">
+
+                    TaskNest
+
+                </h2>
+
+                <p class="mt-4 text-white/70">
+
+                    Helping students organize their academic life one task at a time.
+
+                </p>
+
+            </div>
+
+            <div>
+
+                <h3 class="font-bold mb-4">
+
+                    About
+
+                </h3>
+
+                <p class="text-white/70">
+
+                    Track progress, stay productive, and celebrate every accomplishment.
+
+                </p>
+
+            </div>
+
+            <div>
+
+                <h3 class="font-bold mb-4">
+
+                    Contact
+
+                </h3>
+
+                <p class="text-white/70">
+
+                    support@tasknest.com
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

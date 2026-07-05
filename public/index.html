@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaskNest | Student Productivity Workspace</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            jakarta: ["Plus Jakarta Sans", "sans-serif"]
+          },
+          colors: {
+            cream: "#F8F5F2",
+            sand: "#EFE6DD",
+            beige: "#DCC5A8",
+            mocha: "#8B6F47",
+            coffee: "#5C4033",
+            ink: "#2F2B28"
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body class="font-jakarta bg-cream text-ink">
+  <header class="sticky top-0 z-50 bg-cream/80 backdrop-blur-xl border-b border-coffee/10">
+    <nav class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+      <a href="index.html" class="text-2xl font-extrabold tracking-tight text-coffee">
+        TaskNest
+      </a>
+
+      <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-ink/70">
+        <a href="index.html" class="hover:text-coffee">Dashboard</a>
+        <a href="pending.html" class="hover:text-coffee">Pending</a>
+        <a href="completed.html" class="hover:text-coffee">Completed</a>
+        <a href="#about" class="hover:text-coffee">About</a>
+      </div>
+
+      <a href="#contact" class="hidden md:inline-flex px-5 py-2 rounded-full bg-coffee text-white text-sm font-bold hover:bg-mocha transition">
+        Contact
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="max-w-7xl mx-auto px-6 pt-20 pb-12">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="inline-flex px-4 py-2 rounded-full bg-sand text-coffee font-bold text-sm mb-6">
+            Student Productivity Workspace
+          </p>
+
+          <h1 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight text-ink">
+            Welcome to <span class="text-coffee">TaskNest</span>
+          </h1>
+
+          <p class="mt-6 text-xl md:text-2xl text-ink/70 leading-relaxed">
+            Stay organized. Stay productive. Manage your academic tasks with clarity and calm.
+          </p>
+
+          <div class="mt-8 flex flex-col sm:flex-row gap-4">
+            <div class="flex-1 bg-white rounded-full px-5 py-4 shadow-sm border border-coffee/10">
+              <input
+                type="text"
+                placeholder="Search your tasks..."
+                class="w-full outline-none bg-transparent text-ink placeholder:text-ink/40"
+              />
+            </div>
+
+            <button class="px-7 py-4 rounded-full bg-coffee text-white font-bold shadow-lg hover:bg-mocha hover:-translate-y-1 transition">
+              + Add Task
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-white/70 border border-coffee/10 rounded-[2rem] p-8 shadow-2xl">
+          <h2 class="text-2xl font-extrabold text-coffee mb-6">
+            Today’s Focus
+          </h2>
+
+          <div class="space-y-4">
+            <div class="p-5 rounded-2xl bg-sand/70">
+              <p class="font-bold">📌 Finish pending assignments</p>
+              <p class="text-sm text-ink/60 mt-1">Keep your academic deadlines under control.</p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-cream">
+              <p class="font-bold">✅ Track completed work</p>
+              <p class="text-sm text-ink/60 mt-1">Celebrate your progress and stay motivated.</p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-sand/70">
+              <p class="font-bold">🎯 Prioritize smartly</p>
+              <p class="text-sm text-ink/60 mt-1">Focus first on high-priority academic tasks.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 py-10">
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-3xl p-7 shadow-sm border border-coffee/10">
+          <p class="text-4xl font-extrabold text-coffee">24</p>
+          <p class="mt-2 font-bold">Total Tasks</p>
+          <p class="text-sm text-ink/50 mt-1">All academic tasks</p>
+        </div>
+
+        <div class="bg-white rounded-3xl p-7 shadow-sm border border-coffee/10">
+          <p class="text-4xl font-extrabold text-[#B68A4D]">15</p>
+          <p class="mt-2 font-bold">Pending</p>
+          <p class="text-sm text-ink/50 mt-1">Yet to complete</p>
+        </div>
+
+        <div class="bg-white rounded-3xl p-7 shadow-sm border border-coffee/10">
+          <p class="text-4xl font-extrabold text-[#6F8F72]">9</p>
+          <p class="mt-2 font-bold">Completed</p>
+          <p class="text-sm text-ink/50 mt-1">Accomplished tasks</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 py-14">
+      <div class="grid md:grid-cols-2 gap-8">
+        <a href="pending.html" class="group bg-white rounded-[2rem] p-9 shadow-xl border border-coffee/10 hover:-translate-y-2 transition">
+          <div class="w-14 h-14 rounded-2xl bg-sand flex items-center justify-center text-2xl mb-7">
+            📌
+          </div>
+
+          <h2 class="text-3xl font-extrabold text-coffee">
+            Pending Workspace
+          </h2>
+
+          <p class="mt-4 text-ink/60 leading-relaxed">
+            Organize unfinished assignments, quizzes, projects, and deadlines in one focused space.
+          </p>
+
+          <p class="mt-8 font-extrabold text-coffee group-hover:translate-x-2 transition inline-block">
+            Open Workspace →
+          </p>
+        </a>
+
+        <a href="completed.html" class="group bg-white rounded-[2rem] p-9 shadow-xl border border-coffee/10 hover:-translate-y-2 transition">
+          <div class="w-14 h-14 rounded-2xl bg-[#E7F0E4] flex items-center justify-center text-2xl mb-7">
+            ✅
+          </div>
+
+          <h2 class="text-3xl font-extrabold text-coffee">
+            Achievement Archive
+          </h2>
+
+          <p class="mt-4 text-ink/60 leading-relaxed">
+            Review completed academic work and track how much progress you have already made.
+          </p>
+
+          <p class="mt-8 font-extrabold text-coffee group-hover:translate-x-2 transition inline-block">
+            View Archive →
+          </p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-coffee text-white mt-12" id="about">
+    <div class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-10">
+      <div>
+        <h2 class="text-2xl font-extrabold">TaskNest</h2>
+        <p class="mt-4 text-white/70">
+          A warm and minimal student productivity workspace built to manage academic tasks clearly.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-extrabold mb-4">About</h3>
+        <p class="text-white/70">
+          Designed for students who want to track pending work, completed tasks, priorities, and deadlines.
+        </p>
+      </div>
+
+      <div id="contact">
+        <h3 class="font-extrabold mb-4">Contact</h3>
+        <p class="text-white/70">support@tasknest.com</p>
+        <p class="text-white/70 mt-2">Built with Node, Express, MySQL and Tailwind CSS.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

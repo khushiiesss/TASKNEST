@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TaskNest | Task Details</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: "#F8F5F2",
+                        sand: "#E9DDD4",
+                        coffee: "#6F4E37",
+                        mocha: "#8B6A54",
+                        ink: "#2E2A27",
+                        accent: "#C89F7A"
+                    },
+                    fontFamily: {
+                        jakarta: ["Plus Jakarta Sans", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-cream font-jakarta text-ink min-h-screen flex flex-col">
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="bg-white shadow-sm">
+
+        <div class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
+
+            <a href="index.html"
+                class="text-4xl font-extrabold text-coffee">
+                TaskNest
+            </a>
+
+            <nav class="flex gap-10 text-lg font-semibold">
+
+                <a href="index.html"
+                    class="hover:text-coffee transition">
+                    Dashboard
+                </a>
+
+                <a href="pending.html"
+                    class="hover:text-coffee transition">
+                    Pending
+                </a>
+
+                <a href="completed.html"
+                    class="hover:text-coffee transition">
+                    Completed
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="flex-1">
+
+        <div class="max-w-6xl mx-auto px-8 py-12">
+
+            <a href="pending.html"
+                class="inline-flex items-center gap-2 text-coffee font-bold hover:underline">
+
+                ← Back to Tasks
+
+            </a>
+
+            <!-- JavaScript will generate the entire task here -->
+
+            <div id="taskDetails" class="mt-8">
+
+                <div class="bg-white rounded-[2rem] shadow-xl p-12 text-center">
+
+                    <h2 class="text-3xl font-bold text-coffee">
+                        Loading Task...
+                    </h2>
+
+                    <p class="mt-5 text-gray-500">
+                        Please wait while we fetch the task details.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="bg-coffee text-white mt-20">
+
+        <div class="max-w-7xl mx-auto px-8 py-12 grid md:grid-cols-3 gap-10">
+
+            <div>
+
+                <h2 class="text-2xl font-bold">
+                    TaskNest
+                </h2>
+
+                <p class="mt-4 text-white/70 leading-7">
+                    Helping students stay organized, productive,
+                    and stress-free through smart task management.
+                </p>
+
+            </div>
+
+            <div>
+
+                <h3 class="text-xl font-semibold mb-4">
+                    About
+                </h3>
+
+                <p class="text-white/70 leading-7">
+                    TaskNest is a productivity dashboard designed
+                    to help students efficiently manage academic
+                    tasks with a clean and modern interface.
+                </p>
+
+            </div>
+
+            <div>
+
+                <h3 class="text-xl font-semibold mb-4">
+                    Contact
+                </h3>
+
+                <p class="text-white/70">
+                    📧 support@tasknest.com
+                </p>
+
+                <p class="text-white/70 mt-2">
+                    📞 +91 9876543210
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

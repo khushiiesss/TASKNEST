@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Task | TaskNest</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: "#F8F5F2",
+            sand: "#E9DDD4",
+            coffee: "#6F4E37",
+            mocha: "#8B6A54",
+            ink: "#2E2A27"
+          },
+          fontFamily: {
+            jakarta: ["Plus Jakarta Sans", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-cream font-jakarta text-ink">
+
+  <header class="bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
+      <a href="index.html" class="text-4xl font-extrabold text-coffee">TaskNest</a>
+
+      <nav class="flex gap-10 text-lg font-semibold">
+        <a href="index.html">Dashboard</a>
+        <a href="pending.html">Pending</a>
+        <a href="completed.html">Completed</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-8 py-12">
+    <a href="index.html" class="text-coffee font-bold hover:underline">← Back</a>
+
+    <div class="mt-8 bg-white rounded-[2rem] shadow-xl p-10">
+      <h1 class="text-4xl font-extrabold text-coffee mb-8">Edit Task</h1>
+
+      <form id="editTaskForm" class="space-y-6">
+
+        <input id="title" class="w-full p-4 rounded-xl border" placeholder="Task Title" required>
+
+        <textarea id="description" class="w-full p-4 rounded-xl border" placeholder="Description"></textarea>
+
+        <input id="subject" class="w-full p-4 rounded-xl border" placeholder="Subject">
+
+        <select id="priority" class="w-full p-4 rounded-xl border">
+          <option value="High">High</option>
+          <option value="Medium">Medium</option>
+          <option value="Low">Low</option>
+        </select>
+
+        <input id="deadline" type="date" class="w-full p-4 rounded-xl border">
+
+        <select id="status" class="w-full p-4 rounded-xl border">
+          <option value="Pending">Pending</option>
+          <option value="Completed">Completed</option>
+        </select>
+
+        <button class="px-8 py-4 rounded-full bg-coffee text-white font-bold hover:bg-mocha">
+          Save Changes
+        </button>
+
+      </form>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(220, 197, 168, 0.35), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(139, 111, 71, 0.22), transparent 35%),
+    linear-gradient(135deg, #f8f5f2, #efe6dd);
+}
+
+/* soft card glow */
+.shadow-2xl,
+.shadow-xl {
+  box-shadow: 0 24px 60px rgba(92, 64, 51, 0.12);
+}
+
+/* navbar links */
+nav a {
+  transition: 0.25s ease;
+}
+
+/* input focus */
+input:focus {
+  color: #2f2b28;
+}
+
+/* smooth hover for all cards/buttons */
+a,
+button {
+  transition: all 0.3s ease;
+}
+
+/* warm selection color */
+::selection {
+  background: #dcc5a8;
+  color: #2f2b28;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #efe6dd;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8b6f47;
+  border-radius: 999px;
+}
+
+/* mobile spacing */
+@media (max-width: 768px) {
+  section {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+}
