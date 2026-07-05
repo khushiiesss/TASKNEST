@@ -12,12 +12,48 @@ fetch("/tasks")
     const completedContainer = document.getElementById("completedTasks");
 
     if (pendingContainer) {
-      displayTasks(pendingTasks, pendingContainer);
-    }
+  displayTasks(pendingTasks, pendingContainer);
 
-    if (completedContainer) {
-      displayTasks(completedTasks, completedContainer);
-    }
+  const pendingSearch = document.getElementById("pendingSearch");
+
+  if (pendingSearch) {
+    pendingSearch.addEventListener("input", function () {
+      const searchValue = pendingSearch.value.toLowerCase();
+
+      const filteredTasks = pendingTasks.filter((task) => {
+        return (
+          task.title.toLowerCase().includes(searchValue) ||
+          (task.subject && task.subject.toLowerCase().includes(searchValue)) ||
+          (task.description && task.description.toLowerCase().includes(searchValue))
+        );
+      });
+
+      displayTasks(filteredTasks, pendingContainer);
+    });
+  }
+}
+
+if (completedContainer) {
+  displayTasks(completedTasks, completedContainer);
+
+  const completedSearch = document.getElementById("completedSearch");
+
+  if (completedSearch) {
+    completedSearch.addEventListener("input", function () {
+      const searchValue = completedSearch.value.toLowerCase();
+
+      const filteredTasks = completedTasks.filter((task) => {
+        return (
+          task.title.toLowerCase().includes(searchValue) ||
+          (task.subject && task.subject.toLowerCase().includes(searchValue)) ||
+          (task.description && task.description.toLowerCase().includes(searchValue))
+        );
+      });
+
+      displayTasks(filteredTasks, completedContainer);
+    });
+  }
+}
   })
   .catch((error) => {
     console.error("Error fetching tasks:", error);
@@ -295,4 +331,81 @@ if (editTaskForm) {
         alert("Failed to update task.");
       });
   });
+}
+
+
+// =========================
+// ADD TASK
+// =========================
+
+const taskForm = document.getElementById("taskForm");
+
+if (taskForm) {
+
+    taskForm.addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+        const newTask = {
+
+            title: document.getElementById("title").value.trim(),
+
+            subject: document.getElementById("subject").value.trim(),
+
+            description: document.getElementById("description").value.trim(),
+
+            priority: document.getElementById("priority").value,
+
+            status: document.getElementById("status").value,
+
+            deadline: document.getElementById("deadline").value
+
+        };
+
+        fetch("/tasks", {
+
+            method: "POST",
+
+            headers: {
+
+                "Content-Type": "application/json"
+
+            },
+
+            body: JSON.stringify(newTask)
+
+        })
+
+        .then(response => {
+
+            if (!response.ok) {
+
+                throw new Error("Failed to add task");
+
+            }
+
+            return response.json();
+
+        })
+
+        .then(data => {
+
+            alert("✅ Task added successfully!");
+
+            taskForm.reset();
+
+            window.location.href = "pending.html";
+
+        })
+
+        .catch(error => {
+
+            console.error(error);
+
+            alert("❌ Failed to add task.");
+
+        });
+
+    });
+
 }

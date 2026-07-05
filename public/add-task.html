@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Add Task | TaskNest</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: "#F8F5F2",
+            sand: "#E9DDD4",
+            coffee: "#6F4E37",
+            mocha: "#8B6A54",
+            ink: "#2E2A27"
+          },
+          fontFamily: {
+            jakarta: ["Plus Jakarta Sans", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-cream font-jakarta text-ink min-h-screen flex flex-col">
+
+  <header class="bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
+      <a href="index.html" class="text-4xl font-extrabold text-coffee">
+        TaskNest
+      </a>
+
+      <nav class="flex gap-10 text-lg font-semibold">
+        <a href="index.html" class="hover:text-coffee transition">Dashboard</a>
+        <a href="pending.html" class="hover:text-coffee transition">Pending</a>
+        <a href="completed.html" class="hover:text-coffee transition">Completed</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-1">
+    <section class="max-w-5xl mx-auto px-8 py-14">
+      <a href="index.html" class="inline-flex items-center gap-2 text-coffee font-bold hover:underline">
+        ← Back to Dashboard
+      </a>
+
+      <div class="mt-8 bg-white rounded-[2rem] shadow-2xl p-10 border border-coffee/10">
+        <p class="inline-block bg-sand text-coffee px-4 py-2 rounded-full font-bold text-sm">
+          + New Academic Task
+        </p>
+
+        <h1 class="text-4xl md:text-5xl font-extrabold text-coffee mt-5">
+          Add New Task
+        </h1>
+
+        <p class="mt-4 text-ink/60 text-lg">
+          Create a new academic task and organize it by subject, deadline, priority, and status.
+        </p>
+
+        <form id="taskForm" class="mt-10 space-y-6">
+          <div>
+            <label class="font-bold text-coffee">Task Title</label>
+            <input
+              id="title"
+              type="text"
+              required
+              placeholder="Example: Complete DBMS Assignment"
+              class="w-full mt-2 p-4 rounded-2xl border border-coffee/10 bg-cream outline-none focus:border-coffee transition"
+            />
+          </div>
+
+          <div>
+            <label class="font-bold text-coffee">Subject</label>
+            <input
+              id="subject"
+              type="text"
+              required
+              placeholder="Example: Web Development"
+              class="w-full mt-2 p-4 rounded-2xl border border-coffee/10 bg-cream outline-none focus:border-coffee transition"
+            />
+          </div>
+
+          <div>
+            <label class="font-bold text-coffee">Description</label>
+            <textarea
+              id="description"
+              rows="5"
+              required
+              placeholder="Write a short task description..."
+              class="w-full mt-2 p-4 rounded-2xl border border-coffee/10 bg-cream outline-none focus:border-coffee transition resize-none"
+            ></textarea>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-6">
+            <div>
+              <label class="font-bold text-coffee">Priority</label>
+              <select
+                id="priority"
+                class="w-full mt-2 p-4 rounded-2xl border border-coffee/10 bg-cream outline-none focus:border-coffee transition"
+              >
+                <option value="High">High</option>
+                <option value="Medium" selected>Medium</option>
+                <option value="Low">Low</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="font-bold text-coffee">Status</label>
+              <select
+                id="status"
+                class="w-full mt-2 p-4 rounded-2xl border border-coffee/10 bg-cream outline-none focus:border-coffee transition"
+              >
+                <option value="Pending" selected>Pending</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="font-bold text-coffee">Deadline</label>
+              <input
+                id="deadline"
+                type="date"
+                required
+                class="w-full mt-2 p-4 rounded-2xl border border-coffee/10 bg-cream outline-none focus:border-coffee transition"
+              />
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-5 pt-6">
+            <button
+              type="submit"
+              class="px-8 py-4 rounded-full bg-coffee text-white font-bold hover:bg-mocha transition shadow-lg"
+            >
+              Save Task
+            </button>
+
+            <a
+              href="index.html"
+              class="px-8 py-4 rounded-full bg-sand text-coffee font-bold hover:bg-beige transition"
+            >
+              Cancel
+            </a>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-coffee text-white mt-20">
+    <div class="max-w-7xl mx-auto px-8 py-12 grid md:grid-cols-3 gap-10">
+      <div>
+        <h2 class="text-2xl font-bold">TaskNest</h2>
+        <p class="mt-4 text-white/70 leading-7">
+          Helping students stay organized, productive, and stress-free.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-semibold mb-4">About</h3>
+        <p class="text-white/70 leading-7">
+          TaskNest helps students manage assignments, projects, and deadlines in one beautiful workspace.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-semibold mb-4">Contact</h3>
+        <p class="text-white/70">support@tasknest.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
