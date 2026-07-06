@@ -16,27 +16,30 @@ fetch("/tasks")
     const completedContainer = document.getElementById("completedTasks");
 
     if (pendingContainer) {
-      currentPageTasks = pendingTasks;
-      currentContainer = pendingContainer;
-      displayTasks(currentPageTasks, currentContainer);
+    currentPageTasks = pendingTasks;
+    currentContainer = pendingContainer;
+    displayTasks(currentPageTasks, currentContainer);
+    }
 
-      const pendingSearch = document.getElementById("pendingSearch");
+    const pendingSearch = document.getElementById("pendingSearch");
 
-      if (pendingSearch) {
+    if (pendingSearch) {
         pendingSearch.addEventListener("input", function () {
-          const searchValue = pendingSearch.value.toLowerCase();
-          const filteredTasks = pendingTasks.filter((task) => {
-            return (
-           task.title.toLowerCase().includes(searchValue) ||
-          (task.subject && task.subject.toLowerCase().includes(searchValue)) ||
-          (task.description && task.description.toLowerCase().includes(searchValue))
-        );
-      });
+            const searchValue = pendingSearch.value.toLowerCase();
 
-      displayTasks(filteredTasks, pendingContainer);
-    });
-  }
-}
+            const filteredTasks = pendingTasks.filter((task) => {
+                return (
+                    task.title.toLowerCase().includes(searchValue) ||
+                    (task.subject && task.subject.toLowerCase().includes(searchValue)) ||
+                    (task.description && task.description.toLowerCase().includes(searchValue))
+                );
+            });
+
+            displayTasks(filteredTasks, pendingContainer);
+        });
+    }
+
+
 
 if (completedContainer) {
   currentPageTasks = completedTasks;
@@ -49,19 +52,19 @@ if (completedContainer) {
   if (completedSearch) {
     completedSearch.addEventListener("input", function () {
       const searchValue = completedSearch.value.toLowerCase();
-
       const filteredTasks = completedTasks.filter((task) => {
         return (
-          task.title.toLowerCase().includes(searchValue) ||
+      task.title.toLowerCase().includes(searchValue) ||
           (task.subject && task.subject.toLowerCase().includes(searchValue)) ||
           (task.description && task.description.toLowerCase().includes(searchValue))
-        );
+      );
       });
-
-      displayTasks(filteredTasks, completedContainer);
-    });
-  }
+    
+    displayTasks(filteredTasks, completedContainer);
+      
+  });
 }
+
   })
   .catch((error) => {
     console.error("Error fetching tasks:", error);
