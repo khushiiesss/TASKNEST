@@ -190,6 +190,13 @@
 
         </div>
 
+        <div class="flex flex-wrap gap-3 mb-8">
+            <button onclick="filterTasks('All')" class="filter-btn">All</button>
+            <button onclick="filterTasks('High')" class="filter-btn">High</button>
+            <button onclick="filterTasks('Medium')" class="filter-btn">Medium</button>
+            <button onclick="filterTasks('Low')" class="filter-btn">Low</button>
+        </div>
+
         <!-- JavaScript will populate this later -->
         <div id="completedTasks"
             class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">

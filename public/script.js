@@ -1,5 +1,8 @@
 console.log("Frontend connected successfully!");
 
+let currentPageTasks = [];
+let currentContainer = null;
+
 // -------------------- FETCH ALL TASKS --------------------
 
 fetch("/tasks")
@@ -13,17 +16,18 @@ fetch("/tasks")
     const completedContainer = document.getElementById("completedTasks");
 
     if (pendingContainer) {
-  displayTasks(pendingTasks, pendingContainer);
+      currentPageTasks = pendingTasks;
+      currentContainer = pendingContainer;
+      displayTasks(currentPageTasks, currentContainer);
 
-  const pendingSearch = document.getElementById("pendingSearch");
+      const pendingSearch = document.getElementById("pendingSearch");
 
-  if (pendingSearch) {
-    pendingSearch.addEventListener("input", function () {
-      const searchValue = pendingSearch.value.toLowerCase();
-
-      const filteredTasks = pendingTasks.filter((task) => {
-        return (
-          task.title.toLowerCase().includes(searchValue) ||
+      if (pendingSearch) {
+        pendingSearch.addEventListener("input", function () {
+          const searchValue = pendingSearch.value.toLowerCase();
+          const filteredTasks = pendingTasks.filter((task) => {
+            return (
+           task.title.toLowerCase().includes(searchValue) ||
           (task.subject && task.subject.toLowerCase().includes(searchValue)) ||
           (task.description && task.description.toLowerCase().includes(searchValue))
         );
@@ -35,7 +39,10 @@ fetch("/tasks")
 }
 
 if (completedContainer) {
-  displayTasks(completedTasks, completedContainer);
+  currentPageTasks = completedTasks;
+  currentContainer = completedContainer;
+  displayTasks(currentPageTasks, currentContainer);
+}
 
   const completedSearch = document.getElementById("completedSearch");
 
@@ -430,3 +437,21 @@ function updateDashboardStats(tasks, pendingTasks, completedTasks) {
     completedTasksCount.textContent = completedTasks.length;
   }
 }
+
+
+
+
+window.filterTasks = function (priority) {
+  if (!currentContainer) return;
+
+  if (priority === "All") {
+    displayTasks(currentPageTasks, currentContainer);
+    return;
+  }
+
+  const filteredTasks = currentPageTasks.filter(
+    (task) => task.priority === priority
+  );
+
+  displayTasks(filteredTasks, currentContainer);
+};
