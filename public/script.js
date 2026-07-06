@@ -458,3 +458,24 @@ window.filterTasks = function (priority) {
 
   displayTasks(filteredTasks, currentContainer);
 };
+
+
+window.sortTasks = function (order) {
+  if (!currentContainer) return;
+
+  let sortedTasks = [...currentPageTasks];
+
+  if (order === "earliest") {
+    sortedTasks.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
+  }
+
+  if (order === "latest") {
+    sortedTasks.sort((a, b) => new Date(b.deadline) - new Date(a.deadline));
+  }
+
+  if (order === "default") {
+    sortedTasks = currentPageTasks;
+  }
+
+  displayTasks(sortedTasks, currentContainer);
+};
