@@ -7,6 +7,7 @@ fetch("/tasks")
   .then((tasks) => {
     const pendingTasks = tasks.filter((task) => task.status === "Pending");
     const completedTasks = tasks.filter((task) => task.status === "Completed");
+    updateDashboardStats(tasks, pendingTasks, completedTasks);
 
     const pendingContainer = document.getElementById("pendingTasks");
     const completedContainer = document.getElementById("completedTasks");
@@ -408,4 +409,24 @@ if (taskForm) {
 
     });
 
+}
+
+
+
+function updateDashboardStats(tasks, pendingTasks, completedTasks) {
+  const totalTasksCount = document.getElementById("totalTasksCount");
+  const pendingTasksCount = document.getElementById("pendingTasksCount");
+  const completedTasksCount = document.getElementById("completedTasksCount");
+
+  if (totalTasksCount) {
+    totalTasksCount.textContent = tasks.length;
+  }
+
+  if (pendingTasksCount) {
+    pendingTasksCount.textContent = pendingTasks.length;
+  }
+
+  if (completedTasksCount) {
+    completedTasksCount.textContent = completedTasks.length;
+  }
 }
