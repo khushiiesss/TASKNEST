@@ -157,18 +157,29 @@ app.post("/signup", (req, res) => {
   connection.query(sql, [name, email, password], (err, result) => {
     if (err) {
       console.log(err);
+
       if (err.code === "ER_DUP_ENTRY") {
         return res.status(400).json({
           success: false,
           message: "Email already exists. Please login."
         });
       }
+
       return res.status(500).json({
         success: false,
-        
         message: "Signup failed."
       });
     }
+
+    res.json({
+      success: true,
+      message: "Account created successfully!",
+      user: {
+        id: result.insertId,
+        name: name,
+        email: email
+      }
+    });
   });
 });
 
