@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaskNest | Welcome</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: "#F8F5F2",
+            sand: "#E9DDD4",
+            coffee: "#6F4E37",
+            mocha: "#8B6A54",
+            ink: "#2E2A27"
+          },
+          fontFamily: {
+            jakarta: ["Plus Jakarta Sans", "sans-serif"],
+            playfair: ["Playfair Display", "serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body class="min-h-screen bg-cream text-ink font-jakarta overflow-hidden relative">
+
+  <div class="absolute -top-24 -left-24 w-72 h-72 bg-sand rounded-full opacity-70"></div>
+  <div class="absolute top-20 right-0 w-[32rem] h-[32rem] bg-sand rounded-full opacity-60 translate-x-1/3"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-48 bg-mocha/20 rounded-tr-full"></div>
+
+  <main class="relative min-h-screen grid md:grid-cols-[1.1fr_0.6fr_1fr] items-center px-10 md:px-20 gap-8">
+
+    <section class="z-10">
+      <h3 class="text-4xl font-extrabold text-coffee mb-24">TaskNest</h3>
+
+      <p class="text-4xl text-mocha font-bold mb-3">Welcome to</p>
+
+      <h1 class="font-playfair text-7xl md:text-8xl text-ink leading-none">
+        TaskNest
+      </h1>
+
+      <div class="w-20 h-1 bg-mocha rounded-full my-8"></div>
+
+      <p class="text-xl leading-9 text-ink/70 max-w-xl">
+        Your personal workspace to organize assignments, manage deadlines,
+        track progress and stay productive.
+      </p>
+    </section>
+
+    <section class="z-10 flex flex-col items-center justify-center">
+      <a href="signup.html" class="group flex items-center gap-6">
+        <span class="w-40 border-t-2 border-dashed border-mocha/60"></span>
+
+        <span class="w-28 h-28 rounded-full bg-sand shadow-2xl flex items-center justify-center text-5xl text-coffee group-hover:scale-110 group-hover:bg-coffee group-hover:text-white transition">
+          →
+        </span>
+      </a>
+
+      <p class="mt-8 text-mocha font-bold text-lg">Let's get you started</p>
+    </section>
+
+    <section class="z-10 hidden md:flex justify-center">
+      <div class="bg-white/70 backdrop-blur-xl rounded-[2rem] shadow-2xl p-10 w-80 rotate-3">
+        <h2 class="font-playfair text-4xl text-coffee mb-8">Plan.</h2>
+
+        <ul class="space-y-5 text-ink/70 font-semibold">
+          <li>✓ Organize Tasks</li>
+          <li>✓ Prioritize Work</li>
+          <li>✓ Track Progress</li>
+          <li>✓ Meet Deadlines</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
