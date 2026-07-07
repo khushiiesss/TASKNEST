@@ -222,7 +222,7 @@ app.delete("/tasks/:id", (req, res) => {
 
   connection.query(sql, [id], (err, result) => {
     if (err) {
-      console.log("DELETE ERROR:", err);
+      console.log("DELETE ERROgiR:", err);
       return res.status(500).json({
         message: "Task deletion failed",
         error: err.message

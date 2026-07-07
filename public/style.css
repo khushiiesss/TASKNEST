@@ -74,3 +74,33 @@ button {
   background: #6F4E37;
   color: white;
 }
+
+
+ #toast {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  background: #6F4E37;
+  color: white;
+  padding: 14px 22px;
+  border-radius: 999px;
+  font-weight: 700;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.3s ease;
+  z-index: 99999;
+}
+
+#toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#toast.success {
+  background: #6F8F72;
+}
+
+#toast.error {
+  background: #dc2626;
+}
