@@ -55,6 +55,34 @@ const PORT = 3000;
 // });
 
 // Tasks Route
+app.post("/tasks", (req, res) => {
+  const { title, subject, description, priority, status, deadline, user_id } = req.body;
+
+  const sql = `
+    INSERT INTO tasks (title, subject, description, priority, status, deadline, user_id)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+  `;
+
+  connection.query(
+    sql,
+    [title, subject, description, priority, status, deadline, user_id],
+    (err, result) => {
+      if (err) {
+        console.log("ADD TASK ERROR:", err);
+        return res.status(500).json({
+          message: "Failed to add task",
+          error: err.message
+        });
+      }
+
+      res.json({ message: "Task added successfully!" });
+    }
+  );
+});
+
+// About Route
+
+
 app.get("/tasks", (req, res) => {
   const userId = req.query.user_id;
 
@@ -62,7 +90,7 @@ app.get("/tasks", (req, res) => {
 
   connection.query(sql, [userId], (err, results) => {
     if (err) {
-      console.log(err);
+      console.log("FETCH TASKS ERROR:", err);
       return res.status(500).json({
         message: "Failed to fetch tasks"
       });
@@ -72,7 +100,8 @@ app.get("/tasks", (req, res) => {
   });
 });
 
-// About Route
+
+
   app.get("/tasks/:id", (req, res) => {
   const id = req.params.id;
 
@@ -92,11 +121,11 @@ app.get("/tasks", (req, res) => {
 });
 
 app.post("/tasks", (req, res) => {
-  const { title, description, subject, priority, deadline, status, completed } = req.body;
+  const { title, description, subject, priority, deadline, status, completed, user_id } = req.body;
 
   const sql = `
     INSERT INTO tasks 
-    (title, description, subject, priority, deadline, status, completed)
+    (title, description, subject, priority, deadline, status, completed, user_id)
     VALUES (?, ?, ?, ?, ?, ?, ?)
   `;
 
