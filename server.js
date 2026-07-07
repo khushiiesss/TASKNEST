@@ -56,12 +56,16 @@ const PORT = 3000;
 
 // Tasks Route
 app.get("/tasks", (req, res) => {
-  const sql = "SELECT * FROM tasks";
+  const userId = req.query.user_id;
 
-  connection.query(sql, (err, results) => {
+  const sql = "SELECT * FROM tasks WHERE user_id = ?";
+
+  connection.query(sql, [userId], (err, results) => {
     if (err) {
       console.log(err);
-      return res.status(500).json({ message: "Failed to fetch tasks" });
+      return res.status(500).json({
+        message: "Failed to fetch tasks"
+      });
     }
 
     res.json(results);

@@ -5,7 +5,17 @@ let currentContainer = null;
 
 // -------------------- FETCH ALL TASKS --------------------
 
-fetch("/tasks")
+const authPages = ["login.html", "signup.html"];
+const currentPage = window.location.pathname.split("/").pop();
+
+const loggedInUser = JSON.parse(localStorage.getItem("user"));
+
+if (!loggedInUser && !authPages.includes(currentPage)) {
+    window.location.href = "login.html";
+}
+
+if (loggedInUser && !authPages.includes(currentPage)) {
+  fetch(`/tasks?user_id=${loggedInUser.id}`)
   .then((response) => response.json())
   .then((tasks) => {
     const pendingTasks = tasks.filter((task) => task.status === "Pending");
@@ -23,7 +33,6 @@ fetch("/tasks")
     }
 
     const pendingSearch = document.getElementById("pendingSearch");
-
     if (pendingSearch) {
         pendingSearch.addEventListener("input", function () {
             const searchValue = pendingSearch.value.toLowerCase();
@@ -70,6 +79,7 @@ if (completedContainer) {
   .catch((error) => {
     console.error("Error fetching tasks:", error);
   });
+}
 
 // -------------------- DISPLAY TASK CARDS --------------------
 
@@ -358,6 +368,15 @@ if (taskForm) {
 
         event.preventDefault();
 
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if(!user){
+          showToast("Please login to add a task.", "error");
+          window.location.href = "login.html";
+          return;
+        }
+
+
         const newTask = {
 
             title: document.getElementById("title").value.trim(),
@@ -370,7 +389,9 @@ if (taskForm) {
 
             status: document.getElementById("status").value,
 
-            deadline: document.getElementById("deadline").value
+            deadline: document.getElementById("deadline").value,
+
+            user_id: user.id
 
         };
 
@@ -562,9 +583,13 @@ if (signupForm) {
       const data = await response.json();
 
       if (data.success) {
+        localStorage.setItem("user", JSON.stringify(data.user));
+
+
         showToast(data.message);
 
         setTimeout(() => {
+          
           window.location.href = "index.html";
         }, 1500);
 
@@ -629,6 +654,10 @@ if (loginForm) {
 
       if (data.success) {
         showToast(data.message);
+
+         localStorage.setItem("user", JSON.stringify(data.user));showToast(data.message);
+
+
 
         setTimeout(() => {
           window.location.href = "index.html";
