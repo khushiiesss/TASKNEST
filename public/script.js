@@ -11,6 +11,7 @@ fetch("/tasks")
     const pendingTasks = tasks.filter((task) => task.status === "Pending");
     const completedTasks = tasks.filter((task) => task.status === "Completed");
     updateDashboardStats(tasks, pendingTasks, completedTasks);
+    updatePageStats(tasks, pendingTasks, completedTasks);
 
     const pendingContainer = document.getElementById("pendingTasks");
     const completedContainer = document.getElementById("completedTasks");
@@ -479,3 +480,167 @@ window.sortTasks = function (order) {
 
   displayTasks(sortedTasks, currentContainer);
 };
+
+
+function updatePageStats(tasks, pendingTasks, completedTasks) {
+  const pendingPageCount = document.getElementById("pendingPageCount");
+  const pendingHighCount = document.getElementById("pendingHighCount");
+  const pendingDueSoonCount = document.getElementById("pendingDueSoonCount");
+
+  const completedPageCount = document.getElementById("completedPageCount");
+  const completedHighCount = document.getElementById("completedHighCount");
+  const completedPercentCount = document.getElementById("completedPercentCount");
+
+  const today = new Date();
+  const nextSevenDays = new Date();
+  nextSevenDays.setDate(today.getDate() + 7);
+
+  const pendingHighTasks = pendingTasks.filter(task => task.priority === "High");
+
+  const pendingDueSoonTasks = pendingTasks.filter(task => {
+    if (!task.deadline) return false;
+    const deadline = new Date(task.deadline);
+    return deadline >= today && deadline <= nextSevenDays;
+  });
+
+  const completedHighTasks = completedTasks.filter(task => task.priority === "High");
+
+  if (pendingPageCount) pendingPageCount.textContent = pendingTasks.length;
+  if (pendingHighCount) pendingHighCount.textContent = pendingHighTasks.length;
+  if (pendingDueSoonCount) pendingDueSoonCount.textContent = pendingDueSoonTasks.length;
+
+  if (completedPageCount) completedPageCount.textContent = completedTasks.length;
+  if (completedHighCount) completedHighCount.textContent = completedHighTasks.length;
+
+  if (completedPercentCount) {
+    const percent =
+      tasks.length === 0
+        ? 0
+        : Math.round((completedTasks.length / tasks.length) * 100);
+
+    completedPercentCount.textContent = `${percent}%`;
+  }
+}
+
+
+
+
+
+// signup route
+// -------------------- SIGNUP --------------------
+
+const signupForm = document.getElementById("signupForm");
+
+if (signupForm) {
+  signupForm.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("signupName").value.trim();
+    const email = document.getElementById("signupEmail").value.trim();
+    const password = document.getElementById("signupPassword").value;
+    const confirmPassword = document.getElementById("signupConfirmPassword").value;
+
+    // Check if passwords match
+    if (password !== confirmPassword) {
+      showToast("Passwords do not match.", "error");
+      return;
+    }
+
+    try {
+      const response = await fetch("/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        showToast(data.message);
+
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 1500);
+
+      } else {
+        showToast(data.message, "error");
+      }
+
+    } catch (error) {
+      console.error(error);
+      showToast("Something went wrong.", "error");
+    }
+  });
+}
+
+
+
+
+function showToast(message, type = "success") {
+  const toast = document.getElementById("toast");
+
+  if (!toast) {
+    alert(message);
+    return;
+  }
+
+  toast.textContent = message;
+  toast.className = "";
+  toast.classList.add("show", type);
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2500);
+}
+
+
+
+
+// -------------------- LOGIN --------------------
+
+const loginForm = document.getElementById("loginForm");
+
+if (loginForm) {
+  loginForm.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value;
+
+    try {
+      const response = await fetch("/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email,
+          password
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        showToast(data.message);
+
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 1500);
+
+      } else {
+        showToast(data.message, "error");
+      }
+
+    } catch (error) {
+      console.error(error);
+      showToast("Something went wrong.", "error");
+    }
+  });
+}

@@ -4,6 +4,10 @@ const express = require("express");
 
 const app = express();
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/public/signup.html");
+});
 app.use(express.static("public"));
 
 const PORT = 3000;
@@ -46,9 +50,9 @@ const PORT = 3000;
 // ];
 
 // Home Route
-app.get("/", (req, res) => {
-    res.send("Welcome to Student Task Manager!");
-});
+// app.get("/", (req, res) => {
+//     res.sendFile(__dirname + "/public/signup.html");
+// });
 
 // Tasks Route
 app.get("/tasks", (req, res) => {
@@ -107,6 +111,68 @@ app.post("/tasks", (req, res) => {
   });
 });
 
+
+
+app.post("/signup", (req, res) => {
+  const { name, email, password } = req.body;
+
+  const sql = `
+    INSERT INTO users (name, email, password)
+    VALUES (?, ?, ?)
+  `;
+
+  connection.query(sql, [name, email, password], (err, result) => {
+    if (err) {
+      console.log(err);
+      if (err.code === "ER_DUP_ENTRY") {
+        return res.status(400).json({
+          success: false,
+          message: "Email already exists. Please login."
+        });
+      }
+      return res.status(500).json({
+        success: false,
+        
+        message: "Signup failed."
+      });
+    }
+  });
+});
+
+
+
+app.post("/login", (req, res) => {
+  const { email, password } = req.body;
+
+  const sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+
+  connection.query(sql, [email, password], (err, results) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({
+        success: false,
+        message: "Login failed."
+      });
+    }
+
+    if (results.length === 0) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid email or password."
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "Login successful!",
+      user: {
+        id: results[0].id,
+        name: results[0].name,
+        email: results[0].email
+      }
+    });
+  });
+});
 
 app.put("/tasks/:id", (req, res) => {
   const id = req.params.id;
